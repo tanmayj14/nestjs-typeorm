@@ -19,20 +19,20 @@ import { SharedNote } from './entity/sharednotes.entity';
     TypeOrmModule.forRootAsync({
       useFactory: () => ({
         // name: "user",
-        type: 'mysql',
-        host: 'localhost',
-        port: 3306,
+        type: 'mysql',          // database type [mysql, postgres, mariadb]
+        host: 'localhost',        // local machine
+        port: 3306,       
         username: 'root',
-        password: 'root',
+        password: 'root',       
         database: 'demo',     // database name 
         synchronize: true,    // it would be false in production 
         entities: [User, Note, SharedNote],  // make it running with * and js and ts entities
         autoLoadEntities: true,   // entities will be loaded automatically
       }),
     }),
-    TypeOrmModule.forFeature([User]),       // user entity
-    TypeOrmModule.forFeature([Note]),       // note entity
-    TypeOrmModule.forFeature([SharedNote]),   // shared note entity
+    TypeOrmModule.forFeature([User]),       // user entity injected
+    TypeOrmModule.forFeature([Note]),       // note entity injected
+    TypeOrmModule.forFeature([SharedNote]),   // shared note entity injected
   ],
   controllers: [UserController, NoteController, SharedNoteController],
   providers: [UserService, NoteService, SharedNoteService],

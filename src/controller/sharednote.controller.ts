@@ -16,7 +16,7 @@ export class SharedNoteController {
     constructor(private readonly sharedNoteService: SharedNoteService) { }
 
 
-    @Post('/create')
+    @Post('/create')        // create shared notes api
     async create(@Body() sharedNotesDto: SharedNotesDto): Promise<any> {
         let data = await this.sharedNoteService.createSharedNote(sharedNotesDto.target, sharedNotesDto.noteId, sharedNotesDto.sender);
         return {
@@ -26,7 +26,7 @@ export class SharedNoteController {
         }
     }
 
-    @Get('/getall')
+    @Get('/getall')     // get all shared notes api
     async findAll(): Promise<SharedNote[]> {
         return await this.sharedNoteService.findAll();
     }

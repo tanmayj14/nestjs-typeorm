@@ -15,7 +15,7 @@ import { Note } from '../entity/notes.entity';
 export class NoteController {
     constructor(private readonly notesService: NoteService) { }
 
-    @Post('/create')
+    @Post('/create')        // create notes api
     async create(@Body() notesDTO: NotesDTO): Promise<any> {
         let data = await this.notesService.createNote(notesDTO.text, notesDTO.ownerName);
         return {
@@ -25,7 +25,7 @@ export class NoteController {
         }
     }
 
-    @Get('/get')
+    @Get('/get')        // get all notes
     async findAll(): Promise<Note[]> {
         return await this.notesService.findAll();
     }

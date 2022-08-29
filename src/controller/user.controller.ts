@@ -17,7 +17,7 @@ import { User } from '../entity/user.entity';
 export class UserController {
     constructor(private readonly usersService: UserService) { }
 
-    @Post('/create')
+    @Post('/create')            // user create api
     async create(@Body() createUserDto: CreateUserDto): Promise<any> {
         let data = await this.usersService.createUser(createUserDto);
         return {
@@ -27,12 +27,12 @@ export class UserController {
         }
     }
 
-    @Get('/getAll')
+    @Get('/getAll')         // user get all api
     async findAll(): Promise<User[]> {
         return await this.usersService.findAll();
     }
 
-    @Get('/getById/:id')
+    @Get('/getById/:id')    // user get by Id
     async findOne(@Param('id', ParseIntPipe) id: number): Promise<any> {
         let userByID = await this.usersService.getUserById(id);
         if (!userByID) {
@@ -48,7 +48,7 @@ export class UserController {
         }
     }
 
-    @Delete('/deleteById/:id')
+    @Delete('/deleteById/:id')          // user delete by Id
     async remove(@Param('id') id: string): Promise<any> {
         return await this.usersService.deleteUserById(id);
 

@@ -17,19 +17,19 @@ export class SharedNote extends BaseEntity {
 
   @PrimaryColumn()
   targetId: number;
-  @ManyToOne(() => User, user => user.notesSharedWithYou)
-  @JoinColumn({ name: "targetId" })
+  @ManyToOne(() => User, user => user.notesSharedWithYou)       // many to one relation [one-User , many-notesSharedWithYou]
+  @JoinColumn({ name: "targetId" })                         // coloumn field name - targetId
   target: User;
 
   @PrimaryColumn()
   senderId: number;
-  @ManyToOne(() => User, user => user.notesYouShared)
-  @JoinColumn({ name: "senderId" })
+  @ManyToOne(() => User, user => user.notesYouShared)           // many to one relation [many-notesYouShared, one-User]
+  @JoinColumn({ name: "senderId" })               // coloumn field name - senderId
   sender: User;
 
   @PrimaryColumn()
   noteId: number;
-  @ManyToOne(() => Note, note => note.shares)
-  @JoinColumn({ name: "noteId" })
+  @ManyToOne(() => Note, note => note.shares)       // many to one relation [many-shares, one-user]
+  @JoinColumn({ name: "noteId" })             // coloumn field name - noteId
   note: Note;
 }
